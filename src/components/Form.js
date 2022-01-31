@@ -24,6 +24,7 @@ class Form extends React.Component {
             Nome
             <input
               data-testid="name-input"
+              name="cardName"
               type="text"
               value={ cardName }
               onChange={ onInputChange }
@@ -33,6 +34,7 @@ class Form extends React.Component {
             Descrição
             <input
               data-testid="description-input"
+              name="cardDescription"
               type="textarea"
               value={ cardDescription }
               onChange={ onInputChange }
@@ -42,6 +44,7 @@ class Form extends React.Component {
             Atributo 1
             <input
               data-testid="attr1-input"
+              name="cardAttr1"
               type="number"
               value={ cardAttr1 }
               onChange={ onInputChange }
@@ -51,6 +54,7 @@ class Form extends React.Component {
             Atributo 2
             <input
               data-testid="attr2-input"
+              name="cardAttr2"
               type="number"
               value={ cardAttr2 }
               onChange={ onInputChange }
@@ -60,6 +64,7 @@ class Form extends React.Component {
             Atributo 3
             <input
               data-testid="attr3-input"
+              name="cardAttr3"
               type="number"
               value={ cardAttr3 }
               onChange={ onInputChange }
@@ -69,6 +74,7 @@ class Form extends React.Component {
             Imagem
             <input
               data-testid="image-input"
+              name="cardImage"
               type="text"
               value={ cardImage }
               onChange={ onInputChange }
@@ -78,6 +84,7 @@ class Form extends React.Component {
             Raridade
             <select
               data-testid="rare-input"
+              name="cardRare"
               value={ cardRare }
               onChange={ onInputChange }
             >
@@ -90,6 +97,7 @@ class Form extends React.Component {
             Super Trybe Trunfo
             <input
               data-testid="trunfo-input"
+              name="cardTrunfo"
               type="checkbox"
               checked={ cardTrunfo }
               onChange={ onInputChange }
@@ -117,7 +125,7 @@ Form.propTypes = {
   cardAttr3: PropTypes.string.isRequired,
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
-  cardTrunfo: PropTypes.string.isRequired,
+  cardTrunfo: PropTypes.bool.isRequired,
   // hasTrunfo: PropTypes.bool.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onInputChange: PropTypes.func.isRequired,
