@@ -17,7 +17,7 @@ class App extends React.Component {
       cardTrunfo: false,
       isSaveButtonDisabled: true,
     };
-    this.onInputChange = this.onInputChangeFunc.bind(this);
+    this.onInputChangeFunc = this.onInputChangeFunc.bind(this);
     this.onSaveButtonClick = this.onSaveButtonClick.bind(this);
   }
 
