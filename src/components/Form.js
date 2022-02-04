@@ -17,29 +17,28 @@ class Form extends React.Component {
       onInputChange,
       onSaveButtonClick,
     } = this.props;
-
-    const haveTrunfo = () => {
-      if (hasTrunfo) {
-        return (
-          <p
-            name="Trunfo"
-            data-testid="trunfo-input"
-          >
-            Você já tem um Super Trunfo em seu baralho
-          </p>);
-      } return (
-        <label htmlFor="trunfo">
-          SuperTrunfo
-          <input
-            name="trunfo"
-            data-testid="trunfo-input"
-            type="checkbox"
-            value={ cardTrunfo }
-            onChange={ onInputChange }
-            checked={ cardTrunfo }
-          />
-        </label>);
-    };
+    const TEXT = 'Você já tem um Super Trunfo em seu baralho';
+    // const haveTrunfo = () => {
+    //   if (hasTrunfo) {
+    //     return (
+    //       <p
+    //         name="Trunfo"
+    //         data-testid="trunfo-input"
+    //       >
+    //         Você já tem um Super Trunfo em seu baralho
+    //       </p>);
+    //   } return (
+    //     <label htmlFor="cardTrunfo">
+    //       SuperTrunfo
+    //       <input
+    //         name="cardTrunfo"
+    //         data-testid="trunfo-input"
+    //         type="checkbox"
+    //         onChange={ onInputChange }
+    //         checked={ cardTrunfo }
+    //       />
+    //     </label>);
+    // };
     return (
       <div>
         <form>
@@ -117,11 +116,23 @@ class Form extends React.Component {
             </select>
           </label>
           <div>
-            {haveTrunfo()}
+            {hasTrunfo
+              ? (<p data-testid="trunfo-input"> </p>)
+              : (
+                <label htmlFor="cardTrunfo">
+                  SuperTrunfo
+                  <input
+                    name="cardTrunfo"
+                    data-testid="trunfo-input"
+                    type="checkbox"
+                    onChange={ onInputChange }
+                    checked={ cardTrunfo }
+                  />
+                </label>)}
           </div>
 
           <button
-            type="submit"
+            type="button"
             data-testid="save-button"
             disabled={ isSaveButtonDisabled }
             onClick={ onSaveButtonClick }

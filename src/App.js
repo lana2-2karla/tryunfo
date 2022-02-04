@@ -34,21 +34,25 @@ class App extends React.Component {
       [name]: value }), () => this.getCondition());
   }
 
-  onSaveButtonClick(event) {
-    event.preventDefault();
-    const { cardName,
-      cardDescription,
-      cardImage,
-      cardAttr1,
-      cardAttr2,
-      cardAttr3,
-      cardRare,
-      cardTrunfo,
-    } = this.state;
-      // Após o botão salvar, limpa os inputs
+  onSaveButtonClick() {
+    const { cardTrunfo, deck } = this.state;
+    if (deck === [] && cardTrunfo === true) {
+      this.setState({ hasTrunfo: cardTrunfo });
+    }
     this.setState((prevState) => (
-      // não é o prevState!!
-      { cardName: '',
+      {
+        deck:
+        [...prevState.deck,
+          { cardName: prevState.cardName,
+            cardDescription: prevState.cardDescription,
+            cardImage: prevState.cardImage,
+            cardAttr1: prevState.cardAttr1,
+            cardAttr2: prevState.cardAttr2,
+            cardAttr3: prevState.cardAttr3,
+            cardRare: prevState.cardRare,
+            cardTrunfo: prevState.cardTrunfo }],
+
+        cardName: '',
         cardDescription: '',
         cardImage: '',
         cardAttr1: '0',
@@ -56,21 +60,12 @@ class App extends React.Component {
         cardAttr3: '0',
         cardRare: 'normal',
         cardTrunfo: false,
-        // Add prevState e novo estado
-        deck:
-        [...prevState.deck,
-          { cardName,
-            cardDescription,
-            cardImage,
-            cardAttr1,
-            cardAttr2,
-            cardAttr3,
-            cardRare,
-            cardTrunfo }] }
-    ), () => this.changeHasTrunfo());
+      }
+    ), () => { this.changeHasTrunfo(); });
   }
 
   getCondition() {
+    console.log('oiiiii');
     const NUM_MAX = 90;
     const SUM_NUM_MAX = 210;
     const { cardName,
@@ -86,9 +81,10 @@ class App extends React.Component {
     const boolNumber2 = +cardAttr2 >= 0 && +cardAttr2 <= NUM_MAX;
     const boolNumber3 = +cardAttr3 >= 0 && +cardAttr3 <= NUM_MAX;
     // super dica do Bruno Alves: o + na frente da variável transforma em number
-    const boolSum = (cardAttr1 + +cardAttr2 + +cardAttr3) <= SUM_NUM_MAX;
+    const boolSum = (+cardAttr1 + +cardAttr2 + +cardAttr3) <= SUM_NUM_MAX;
     // só retorna true se todos forem t+rue, caso contrário retorna false
     const result = !boolString && boolNumber1 && boolNumber2 && boolNumber3 && boolSum;
+    console.log(result);
     this.setState({
       // caso seja disabled, está desabilitado;
       isSaveButtonDisabled: !result,
@@ -97,15 +93,17 @@ class App extends React.Component {
 
   changeHasTrunfo() {
     const { deck } = this.state;
+    console.log('!!!!!', deck);
     const result = deck.some((card) => card.cardTrunfo === true);
     if (result) {
-      this.setState({
-        hasTrunfo: true,
-      });
+      this.setState(() => ({
+        hasTrunfo: result,
+      }));
     }
   }
 
   render() {
+    const { deck } = this.state;
     return (
       <div>
         <h1>Tryunfo</h1>
@@ -116,6 +114,7 @@ class App extends React.Component {
           { ...this.state }
         />
         <Card { ...this.state } />
+        { deck !== [] && deck.map((card) => <Card { ...card } key={ card.cardImage } />) }
       </div>
     );
   }

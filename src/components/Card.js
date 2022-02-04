@@ -12,10 +12,11 @@ class Card extends React.Component {
       cardImage,
       cardRare,
       cardTrunfo,
+      key,
     } = this.props;
     return (
       <div>
-        <h2 data-testid="name-card">{ cardName }</h2>
+        <h2 data-testid="name-card" key={ key }>{ cardName }</h2>
         <img src={ cardImage } alt={ cardName } data-testid="image-card" />
         <p data-testid="description-card">{ cardDescription }</p>
         <span data-testid="attr1-card">{ cardAttr1 }</span>
@@ -38,5 +39,6 @@ Card.propTypes = {
   cardImage: PropTypes.string.isRequired,
   cardRare: PropTypes.string.isRequired,
   cardTrunfo: PropTypes.bool.isRequired,
+  key: PropTypes.string.isRequired,
 };
 export default Card;
