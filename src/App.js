@@ -84,7 +84,6 @@ class App extends React.Component {
     const boolSum = (+cardAttr1 + +cardAttr2 + +cardAttr3) <= SUM_NUM_MAX;
     // só retorna true se todos forem t+rue, caso contrário retorna false
     const result = !boolString && boolNumber1 && boolNumber2 && boolNumber3 && boolSum;
-    console.log(result);
     this.setState({
       // caso seja disabled, está desabilitado;
       isSaveButtonDisabled: !result,
@@ -93,7 +92,6 @@ class App extends React.Component {
 
   changeHasTrunfo() {
     const { deck } = this.state;
-    console.log('!!!!!', deck);
     const result = deck.some((card) => card.cardTrunfo === true);
     if (result) {
       this.setState(() => ({
