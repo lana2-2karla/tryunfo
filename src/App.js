@@ -80,7 +80,7 @@ class App extends React.Component {
     const boolNumber1 = +cardAttr1 >= 0 && +cardAttr1 <= NUM_MAX;
     const boolNumber2 = +cardAttr2 >= 0 && +cardAttr2 <= NUM_MAX;
     const boolNumber3 = +cardAttr3 >= 0 && +cardAttr3 <= NUM_MAX;
-    // super dica do Bruno Alves: o + na frente da variável transforma em number
+    // super dica do Bruno Alves e Lucas Pimentel: o + na frente da variável transforma em number
     const boolSum = (+cardAttr1 + +cardAttr2 + +cardAttr3) <= SUM_NUM_MAX;
     // só retorna true se todos forem t+rue, caso contrário retorna false
     const result = !boolString && boolNumber1 && boolNumber2 && boolNumber3 && boolSum;
